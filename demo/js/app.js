@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute', 'ngConsole']);
+var app = angular.module('app', ['ngRoute', 'ngContextualMenu']);
 
 app.config(['$routeProvider', function($routeProvider){
   $routeProvider
