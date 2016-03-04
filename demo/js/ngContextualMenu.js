@@ -7,16 +7,16 @@ var hoverColor = "#2483C5";
 var spacerColor = "#e3e3e3";
 
 /* Create module */
-var _ngcm = angular.module('ngContextualMenu', [])
+var _ngcm = angular.module('ngContextualMenu', ['ngSanitize'])
 
 /* Create directive */
 .directive('ngContextualMenu',
-  ['$rootScope',
-  function($rootScope) {
+  ['$rootScope', '$sce',
+  function($rootScope, $sce) {
     return {
       restrict: 'AE',
       transclude: true,
-      template: '<style>.right-click{position: absolute;display: none;float: left;min-width: 200px;max-width: 300px;width: auto;height: auto;padding: 5px 0px;margin: 0px;box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.3);border: none;transition: all 0s;z-index: 99999;}.right-click.open{display: block;}.right-click *{box-sizing: border-box;cursor: default;transition: all 0s;}.right-click ul, .right-click ul li{position: relative;display: block;float: left;width: 100%;height: auto;margin: 0px;padding: 0px;}.right-click ul li{width: 100%;font-size: 12px;clear: both;list-style: none;}.right-click ul li:hover{color: white;}.right-click ul li *{position: relative; display: block;width: 100%;padding: 5px 10px;}.right-click ul li:hover *{color: inherit;}.right-click ul li.spacer{border-bottom: 1px solid black;}.right-click ul li.spacer, .right-click ul li.spacer:hover{background: none; height: 0px; padding:0px; margin:5px 0px;}</style><style id="bgColor">.right-click{background: '+ bgColor +';}</style><style id="hoverColor">.right-click ul li:hover{background-color: '+ hoverColor +';}</style><style id="spacerColor">.right-click ul li.spacer{border-bottom: 1px solid '+ spacerColor +';}</style><div class="right-click"><ul><li ng-repeat="option in options.customActions" ng-class="{\'spacer\': option.spacer}"><span ng-click="option.action()" ng-if="!option.spacer">{{ option.label }}</span></li></ul></div>',
+      template: '<style>.right-click{position: absolute;display: none;float: left;min-width: 200px;max-width: 300px;width: auto;height: auto;padding: 5px 0px;margin: 0px;box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.3);border: none;transition: all 0s;z-index: 99999;}.right-click *{box-sizing: border-box;cursor: default;transition: all 0s;}.right-click ul, .right-click ul li{position: relative;display: block;float: left;width: 100%;height: auto;margin: 0px;padding: 0px;}.right-click ul li{width: 100%;font-size: 14px;clear: both;list-style: none;}.right-click ul li:hover{color: white;}.right-click ul li span{position: relative; display: block;width: 100%;padding: 5px 10px;}.right-click ul li:hover *{color: inherit;}.right-click ul li span .icon{display: inline-block; width: 18px;}.right-click ul li.spacer{border-bottom: 1px solid black;}.right-click ul li.spacer, .right-click ul li.spacer:hover{background: none; height: 0px; padding:0px; margin:5px 0px;}</style><style id="bgColor">.right-click{background: '+ bgColor +';}</style><style id="hoverColor">.right-click ul li:hover{background-color: '+ hoverColor +';}</style><style id="spacerColor">.right-click ul li.spacer{border-bottom: 1px solid '+ spacerColor +';}</style><div class="right-click"><ul><li ng-repeat="option in options.customActions" ng-class="{\'spacer\': option.spacer}"><span ng-click="option.action()" ng-if="!option.spacer" ng-bind-html="option.label"></span></li></ul></div>',
       scope:{
         options: "=options"
       },
@@ -51,6 +51,14 @@ var _ngcm = angular.module('ngContextualMenu', [])
             bgColor = scope.options.customTheme.bgColor;
             hoverColor = scope.options.customTheme.hoverColor;
             spacerColor = scope.options.customTheme.spacerColor;
+          }
+        };
+
+        /* Parse HTML */
+        scope.parseHTML = function(){
+          for(var x in scope.options.actions){
+            var _act = scope.options.actions[x];
+            act.label = $sce.trustAsHtml(act.label)
           }
         };
 
@@ -118,6 +126,7 @@ var _ngcm = angular.module('ngContextualMenu', [])
         /* Watch changes on scope.options */
         scope.$watch('options', function(newValue){
           scope.updateTheme();
+          scope.parseHTML();
         });
       }
     }

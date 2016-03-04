@@ -33,9 +33,42 @@ app.controller('viewController', ['$scope', function($scope){
   // This will make these commands available for users.
   $scope.options.customActions = [
     {
+      label: "<i class='icon ion-social-facebook'></i> Compartir en Facebook",
+      action: function(){
+        alert("Compartido");
+      }
+    },
+    {
+      label: "<i class='icon ion-social-googleplus'></i> Compartir en Google+",
+      action: function(){
+        alert("Compartido");
+      }
+    },
+    {
+      label: "<i class='icon ion-social-twitter'></i> Compartir en Twitter",
+      action: function(){
+        alert("Compartido");
+      }
+    },
+    {
+      label: "<i class='icon ion-social-pinterest'></i> Compartir en Pinterest",
+      action: function(){
+        alert("Compartido");
+      }
+    },
+    {
+      label: "<i class='icon ion-social-youtube'></i> Compartir en Youtube",
+      action: function(){
+        alert("Compartido");
+      }
+    },
+    {
+      spacer: true
+    },
+    {
       label: "Alert",
       action: function(){
-        alert("Hello, this is an Alert message.");
+        console.log("Hello, this is an alert.");
       }
     },
     {
