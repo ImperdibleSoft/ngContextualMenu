@@ -1,0 +1,61 @@
+<div class="mc-layout" mc-layout="2">
+  <div class="mc-layout" mc-layout-size="normal">
+
+    <!-- View Code -->
+    <div class="mc-card">
+      <div class="mc-header">
+        <h1 class="mc-title">View's code</h1>
+      </div>
+      <div class="mc-content">
+        <code class="mc-code">
+          &lt;ng-contextual-menu options="options"&gt;&lt;/ng-contextual-menu&gt;
+        </code>
+      </div>
+    </div>
+
+    <!-- Links -->
+    <div class="mc-card">
+      <div class="mc-header">
+        <h1 class="mc-title">Links</h1>
+      </div>
+      <div class="mc-content">
+        <a class="mc-button mc-button-comb mc-button-raised mc-clickable" mc-action="github" target="_blank" ng-href="https://github.com/ImperdibleSoft/ngContextualMenu">Contribute</a>
+        <a class="mc-button mc-button-comb mc-button-raised mc-clickable" mc-action="imperdiblesoft" target="_blank" ng-href="http://www.imperdiblesoft.com/" href="http://www.imperdiblesoft.com/">ImperdibleSoft</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="mc-layout" mc-layout-size="normal">
+
+    <!-- Controller code -->
+    <div class="mc-card">
+      <div class="mc-header">
+        <h1 class="mc-title">Controller's code</h1>
+      </div>
+      <div class="mc-content">
+        <code class="mc-code">
+          // All this stuff is entirely OPTIONAL.<br />
+          $scope.options = {}; <br /><br />
+
+          // This will load a theme at startup. <br />
+          $scope.options.customTheme: { <br />
+            <span style="line-height:99%;color:#666;">
+            &nbsp;&nbsp;bgColor: "{{ options.customTheme.bgColor ? options.customTheme.bgColor : 'false' }}" <br />
+            &nbsp;&nbsp;hoverColor: "{{ options.customTheme.hoverColor ? options.customTheme.hoverColor : 'false' }}" <br />
+            &nbsp;&nbsp;spacerColor: "{{ options.customTheme.spacerColor ? options.customTheme.spacerColor : 'false' }}"  <br />
+            };<br /><br />
+
+            // This will make these commands available for users. <br />
+            $scope.options.customActions: [ <br />
+              </span>
+              <span style="line-height:99%;color:#666;" ng-repeat="command in options.customActions">&nbsp;&nbsp;{ <br />
+                &nbsp;&nbsp;&nbsp;&nbsp;label: {{ command.label ? '\"'+ command.label +'\"' : 'false' }}, <br />
+                &nbsp;&nbsp;&nbsp;&nbsp;spacer: {{ command.spacer ? 'true' : 'false' }}, <br />
+                &nbsp;&nbsp;&nbsp;&nbsp;action: {{ command.action ? command.action.toString() : 'false' }} <br />
+              &nbsp;&nbsp;},</span> <br />
+            ]; <br /><br />
+        </code>
+      </div>
+    </div>
+  </div>
+</div>

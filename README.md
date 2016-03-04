@@ -6,7 +6,7 @@ With this directive, developers can avoid to design and create a user interface 
 # Installation
 To install ngContextualMenu on your project, follow these steps: <br />
 1) Make a <code>npm install ng-contextual-menu</code>. <br />
-2) Copy the file <code>node_modules/ng-contextual-menu</build/ngContextualMenu.js</code> to your project's folder. <br />
+2) Copy the file <code>node_modules/ng-contextual-menu/build/ngContextualMenu.js</code> to your project's folder. <br />
 3) Declare ngContextualMenu as a dependency for your module <code>angular.module('myApp' ['ngContextualMenu'])</code> <br />
 4) Save it. You are done!
 
